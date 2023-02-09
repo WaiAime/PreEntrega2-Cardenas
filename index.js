@@ -1,126 +1,87 @@
-// const miCarrito = [
-//   { nombre: "arroz", precio: 150 },
-//   { nombre: "harina", precio: 120 },
-//   { nombre: "leche", precio: 200 },
-// ];
 
-// function buscarProducto(arr, string) {
-//   return arr.find((el) => {
-//     return el.nombre.include(string);
-//   });
-// }
+alert("Bienvida a la tienda de Mai") //texto a cambiar
 
-// function agregarCantidad(arr, cantidad, product) {
-//   cantidad = prompt("Ingrese Cantidad");
-//   while (!cantidad) {
-//     // 0 false, != 0 es verdadero, null es falso, para undefined es falso
-//   }
-//   for (let i = 0; i < cantidad; i++) {
-//     arr.push(product);
-//   }
-// }
+const verServicios = () => {
+  let mensaje = `Ingresa el codigo de la sesión deseada para agregarla a tu compra`;
+  Productos.forEach((el, index) => {
+    mensaje += `
+    ${index + 1}) ${el.nombre} $${el.precio} ${el.duracion}
+          `;
+  });
+  let menu = parseInt(prompt(mensaje));
+  Carrito.push(Productos[menu - 1]); // agregamos al carrito un producto seleccionado a traves de su indice
+};
 
-// function agregarAlCarrito(arr, opcion) {
-//   let cantidad = 0;
-//   switch (opcion) {
-//     case "arroz":
-//       const arroz = new Product({ nombre: "arroz", precio: 150 });
-//       agregarCantidad(arr, cantidad, arroz);
-//       break;
-//     case "harina":
-//       const harina = new Product({ nombre: "harina", precio: 120 });
-//       agregarCantidad(arr, cantidad, harina);
-//   }
-// }
-
-// agregarAlCarrito(miCarrito, new Producto({ nombre: "arroz", precio: 150 }));
-
-// let total = 0; // acumulador
-
-// miCarrito.forEach((el) => {
-//   console.log(el);
-//   total += el.precio; // total = total+el.precio
-// });
-
-// console.log(total);
-
-const mostrarCarrito = () => {
-  let mensaje = `Carrito:`;
+const verElegidos = () => {
+  let mensaje = `Hasta ahora elegiste: `;
   Carrito.forEach((el, index) => {
     mensaje += `
-                ${index + 1}- ${el.nombre} $${el.precio}
+                ${index + 1}. ${el.nombre} $${el.precio} ${el.duracion}
             `;
   });
   alert(mensaje);
 };
 
-const mostrarCatalogo = () => {
-  let mensaje = `Productos:
-                  Seleccione el codigo para agregar al carrito
-    `;
-  Productos.forEach((el, index) => {
-    mensaje += `
-              ${index + 1}- ${el.nombre} $${el.precio}
-          `;
-  });
-  let opcion = parseInt(prompt(mensaje));
-  Carrito.push(Productos[opcion - 1]); // agregamos al carrito un producto seleccionado a travez de su indice
-};
-
-const mostrarTotal = () => {
+const totalCompra = () => {
   let total = 0;
   Carrito.forEach((el) => {
-    total += el.precio;
-  });
-  alert(" Su total por ahora es: " + total);
+    total += el.precio;  });
+  alert("Monto Total: $" + total + " Hay 10% de descuento por pago efectivo!"); //se podria hacer una funcion para restarle el 10% dependiendo el medio de pago que elija
 };
 
 const Carrito = [];
 class Producto {
-  constructor(nombre, precio) {
+  constructor(nombre, precio, duracion) {
     this.nombre = nombre;
     this.precio = precio;
+    this.duracion=duracion;
   }
 }
 
-const arroz = new Producto("arroz", 150);
-const leche = new Producto("leche", 120);
-const harina = new Producto("harina", 100);
+const masajeTailandes = new Producto("Masaje Tailandés", 3000, "  Duración del masaje 1hr");
+const reiki = new Producto("Reiki", 2500, "  Duración de la sesión 50 min");
+const terapiaSacrouterina = new Producto("Terapia Sacrouterina", 2800, "  Duración de la terapia 1hs 30min");
+const registrosAkashicos = new Producto("Registros Akashicos", 2200, "  Duración 1hr");
+const ritoDelUtero = new Producto("Rito del Utero", 2800, "  Duración 2hs")
 
-const Productos = [arroz, leche, harina];
+const Productos = [masajeTailandes, reiki, terapiaSacrouterina, registrosAkashicos];
 
-let opcion = parseInt(
-  prompt(`Hola, Bienvenido, que desea hacer?  
-                            1- Ver Catalogo 
-                            2- Ver Carrito 
-                            3- Ver Total 
-                            4- Salir  
+let menu = parseInt(
+  prompt(`Ingresá el nro de la opción deseada  
+                            1. Sesiones Disponibles
+                            2. Mis Elegidos
+                            3. Total Compra 
+                            4. Finalizar  
 `)
 );
 
-while (opcion !== 4) {
-  switch (opcion) {
+while (menu !== 4) {
+  switch (menu) {
     case 1:
-      mostrarCatalogo();
+      verServicios();
       break;
     case 2:
-      mostrarCarrito();
+      verElegidos();
       break;
     case 3:
-      mostrarTotal();
+      totalCompra();
       break;
     default:
       break;
   }
-  opcion = parseInt(
-    prompt(`Hola, Bienvenido, que desea hacer?  
-                              1- Ver Catalogo 
-                              2- Ver Carrito 
-                              3- Ver Total 
-                              4- Salir  
-  `)
+  menu = parseInt(
+    prompt(`Ingresá el nro de la opción deseada  
+    1. Sesiones Disponibles
+    2. Mis Elegidos
+    3. Total Compra 
+    4. Finalizar  
+`)
   );
-  if (opcion == 4) {
-    alert("Hasta luego");
+  if (menu == 4) {
+    console.log= prompt(`Ingresá tu nombre para el turno`);
+    alert("Gracias por tu compra, te contactaremos a la brevedad para coordinar tu sesión");
   }
 }
+
+
+

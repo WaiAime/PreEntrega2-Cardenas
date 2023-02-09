@@ -1,5 +1,5 @@
 
-alert("Bienvida a la tienda de Mai") //texto a cambiar
+alert("Bienvide a la tienda de Mai!") //texto a cambiar
 
 const verServicios = () => {
   let mensaje = `Ingresa el codigo de la sesión deseada para agregarla a tu compra`;
@@ -9,7 +9,7 @@ const verServicios = () => {
           `;
   });
   let menu = parseInt(prompt(mensaje));
-  Carrito.push(Productos[menu - 1]); // agregamos al carrito un producto seleccionado a traves de su indice
+  Carrito.push(Productos[menu - 1]); 
 };
 
 const verElegidos = () => {
@@ -26,7 +26,15 @@ const totalCompra = () => {
   let total = 0;
   Carrito.forEach((el) => {
     total += el.precio;  });
-  alert("Monto Total: $" + total + " Hay 10% de descuento por pago efectivo!"); //se podria hacer una funcion para restarle el 10% dependiendo el medio de pago que elija
+  alert("Monto Total: $" + total + " Hay 10% de descuento por pago efectivo!"); 
+  let medioDePago= prompt(`Abonas en efectivo? 1. Si  2. No`);
+  if (medioDePago==1){
+    console.log("Descuento aplicado. Total $"+ (total/1.10));
+    alert("Nuevo total $"+ (total/1.10));
+  }
+  else{
+    alert("Monto Total: $" + total);
+  };
 };
 
 const Carrito = [];
@@ -44,7 +52,7 @@ const terapiaSacrouterina = new Producto("Terapia Sacrouterina", 2800, "  Duraci
 const registrosAkashicos = new Producto("Registros Akashicos", 2200, "  Duración 1hr");
 const ritoDelUtero = new Producto("Rito del Utero", 2800, "  Duración 2hs")
 
-const Productos = [masajeTailandes, reiki, terapiaSacrouterina, registrosAkashicos];
+const Productos = [masajeTailandes, reiki, terapiaSacrouterina, registrosAkashicos, ritoDelUtero];
 
 let menu = parseInt(
   prompt(`Ingresá el nro de la opción deseada  
